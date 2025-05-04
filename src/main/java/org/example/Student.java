@@ -10,7 +10,7 @@ public class Student {
     private int id;
     private String name;
     private int age;
-    @ManyToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Laptop> laptops;
     public Student(int id, String name, int age) {
         this.id = id;
@@ -59,6 +59,7 @@ public class Student {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", age=" + age +
+                ", laptops=" + laptops +
                 '}';
     }
 }

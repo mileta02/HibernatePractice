@@ -1,6 +1,7 @@
 package org.example;
 
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
@@ -25,12 +26,13 @@ public class Main {
         s2.setLaptops(Arrays.asList(l3));
 
         s1.setLaptops(Arrays.asList(l1,l2));
-        s2.setLaptops(Arrays.asList(l2,l3));
-        
+        s2.setLaptops(Arrays.asList(l3));
+
         Configuration cfg = new Configuration();
-        Session session = cfg.configure().addAnnotatedClass(Student.class)
+        SessionFactory sf = cfg.configure().addAnnotatedClass(Student.class)
                 .addAnnotatedClass(Laptop.class)
-                .buildSessionFactory().openSession();
+                .buildSessionFactory();
+        Session session = sf.openSession();
         Transaction t = session.beginTransaction();
         //CREATE
         session.persist(s1);
@@ -38,20 +40,14 @@ public class Main {
         session.persist(l1);
         session.persist(l2);
         session.persist(l3);
-        //READ
-        Student student = session.get(Student.class,1);
-        System.out.println(student);
 
-//        //UPDATE
-//        Student s3 = new Student(1,"Milan",23);
-//        session.merge(s3);
-//
-//        //UPDATE(new obj)
-//        Student s4 = new Student(4,"Kristina",22);
-//        session.merge(s4);
-//
-//        //DELETE
-//        session.remove(s1);
-         t.commit();
+
+        t.commit();
+        session.close();
+
+        Session session1 = sf.openSession();
+        Student student = session1.get(Student.class,1);
+
+
     }
 }

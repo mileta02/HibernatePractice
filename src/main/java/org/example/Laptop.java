@@ -11,8 +11,7 @@ public class Laptop {
     private int id;
     private String brand;
     private String model;
-    @ManyToMany(mappedBy = "laptops")
-    private List<Student> students;
+
     public Laptop() {
     }
 
@@ -29,13 +28,7 @@ public class Laptop {
         this.id = id;
     }
 
-    public List<Student> getStudents() {
-        return students;
-    }
 
-    public void setStudents(List<Student> students) {
-        this.students = students;
-    }
 
     public String getBrand() {
         return brand;
