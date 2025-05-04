@@ -3,6 +3,7 @@ package org.example;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Laptop {
@@ -11,7 +12,8 @@ public class Laptop {
     private int id;
     private String brand;
     private String model;
-
+    @ManyToOne
+    Student student;
     public Laptop() {
     }
 
@@ -26,6 +28,14 @@ public class Laptop {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
     }
 
     public String getBrand() {

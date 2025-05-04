@@ -17,10 +17,16 @@ public class Main {
         l1.setId(1);
 
         Laptop l2 = new Laptop("Asus","Rogue");
-        l1.setId(2);
+        l2.setId(2);
         s1.setLaptops(Arrays.asList(l1,l2));
 
+        Laptop l3 = new Laptop("Toshiba", "XYZ");
+        l3.setId(3);
+        s2.setLaptops(Arrays.asList(l3));
 
+        l1.setStudent(s1);
+        l2.setStudent(s1);
+        l3.setStudent(s2);
         Configuration cfg = new Configuration();
         Session session = cfg.configure().addAnnotatedClass(Student.class)
                 .addAnnotatedClass(Laptop.class)
@@ -28,8 +34,10 @@ public class Main {
         Transaction t = session.beginTransaction();
         //CREATE
         session.persist(s1);
+        session.persist(s2);
         session.persist(l1);
         session.persist(l2);
+        session.persist(l3);
         //READ
         Student student = session.get(Student.class,1);
         System.out.println(student);
