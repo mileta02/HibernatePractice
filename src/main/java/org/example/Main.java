@@ -4,6 +4,8 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import java.util.Arrays;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
@@ -13,7 +15,10 @@ public class Main {
 
         Laptop l1 = new Laptop("Lenovo","Ideapad 5");
         l1.setId(1);
-        s1.setLaptop(l1);
+
+        Laptop l2 = new Laptop("Asus","Rogue");
+        l1.setId(2);
+        s1.setLaptops(Arrays.asList(l1,l2));
 
 
         Configuration cfg = new Configuration();
@@ -24,6 +29,7 @@ public class Main {
         //CREATE
         session.persist(s1);
         session.persist(l1);
+        session.persist(l2);
         //READ
         Student student = session.get(Student.class,1);
         System.out.println(student);

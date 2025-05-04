@@ -1,9 +1,8 @@
 package org.example;
 
-import jakarta.persistence.Embeddable;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Student {
@@ -11,20 +10,20 @@ public class Student {
     private int id;
     private String name;
     private int age;
-    @OneToOne
-    private Laptop laptop;
+    @OneToMany
+    private List<Laptop> laptops;
     public Student(int id, String name, int age) {
         this.id = id;
         this.name = name;
         this.age = age;
     }
 
-    public Laptop getLaptop() {
-        return laptop;
+    public List<Laptop> getLaptops() {
+        return laptops;
     }
 
-    public void setLaptop(Laptop laptop) {
-        this.laptop = laptop;
+    public void setLaptops(List<Laptop> laptops) {
+        this.laptops = laptops;
     }
 
     public Student(){
