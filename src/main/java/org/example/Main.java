@@ -24,9 +24,9 @@ public class Main {
         l3.setId(3);
         s2.setLaptops(Arrays.asList(l3));
 
-        l1.setStudent(s1);
-        l2.setStudent(s1);
-        l3.setStudent(s2);
+        s1.setLaptops(Arrays.asList(l1,l2));
+        s2.setLaptops(Arrays.asList(l2,l3));
+        
         Configuration cfg = new Configuration();
         Session session = cfg.configure().addAnnotatedClass(Student.class)
                 .addAnnotatedClass(Laptop.class)
