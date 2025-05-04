@@ -1,5 +1,6 @@
 package org.example;
 
+import jakarta.persistence.Embeddable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
@@ -9,11 +10,19 @@ public class Student {
     private int id;
     private String name;
     private int age;
-
+    private Laptop laptop;
     public Student(int id, String name, int age) {
         this.id = id;
         this.name = name;
         this.age = age;
+    }
+
+    public Laptop getLaptop() {
+        return laptop;
+    }
+
+    public void setLaptop(Laptop laptop) {
+        this.laptop = laptop;
     }
 
     public Student(){
