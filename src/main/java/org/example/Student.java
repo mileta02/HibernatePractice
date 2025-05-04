@@ -3,6 +3,7 @@ package org.example;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Student {
@@ -10,6 +11,7 @@ public class Student {
     private int id;
     private String name;
     private int age;
+    @OneToOne
     private Laptop laptop;
     public Student(int id, String name, int age) {
         this.id = id;

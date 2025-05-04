@@ -12,15 +12,18 @@ public class Main {
         Student s2 = new Student(2,"Andrej",22);
 
         Laptop l1 = new Laptop("Lenovo","Ideapad 5");
+        l1.setId(1);
         s1.setLaptop(l1);
 
 
         Configuration cfg = new Configuration();
-        Session session = cfg.configure().addAnnotatedClass(Student.class).buildSessionFactory().openSession();
+        Session session = cfg.configure().addAnnotatedClass(Student.class)
+                .addAnnotatedClass(Laptop.class)
+                .buildSessionFactory().openSession();
         Transaction t = session.beginTransaction();
         //CREATE
         session.persist(s1);
-        session.persist(s2);
+        session.persist(l1);
         //READ
         Student student = session.get(Student.class,1);
         System.out.println(student);
